@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Love Predictor</title>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        /* 💖 COLORFUL GRADIENT BACKGROUND */
+        background: linear-gradient(135deg, #ff6b81, #ff4757, #ff9ff3, #6c5ce7);
+        background-size: 400% 400%;
+        animation: gradientMove 10s ease infinite;
+    }
+
+    @keyframes gradientMove {
+        0% {background-position: 0% 50%;}
+        50% {background-position: 100% 50%;}
+        100% {background-position: 0% 50%;}
+    }
+
+    .container {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        width: 320px;
+    }
+
+    h1 {
+        color: white;
+        margin-bottom: 20px;
+        text-shadow: 0 0 10px rgba(255,255,255,0.7);
+    }
+
+    input {
+        width: 90%;
+        padding: 12px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 10px;
+        outline: none;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    /* 💘 GLOWING BUTTON */
+    button {
+        padding: 12px 25px;
+        margin-top: 10px;
+        border: none;
+        background: #ff4d79;
+        color: white;
+        font-size: 18px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+        box-shadow: 0 0 15px rgba(255, 75, 100, 0.7);
+    }
+
+    button:hover {
+        background: #ff2e63;
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(255, 75, 100, 1);
+    }
+
+    #result {
+        margin-top: 20px;
+        font-size: 22px;
+        color: white;
+        font-weight: bold;
+        text-shadow: 0 0 10px rgba(255,255,255,0.9);
+    }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <h1>❤️ Love Predictor ❤️</h1>
+
+    <input type="text" id="name1" placeholder="Your Name">
+    <input type="text" id="name2" placeholder="Partner Name">
+
+    <button onclick="predictLove()">Predict Love</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+function predictLove() {
+    let name1 = document.getElementById("name1").value.trim();
+    let name2 = document.getElementById("name2").value.trim();
+    let result = document.getElementById("result");
+
+    if (name1 === "" || name2 === "") {
+        result.innerHTML = "Please enter both names!";
+        return;
+    }
+
+    // Calculate fun score
+    let combined = name1.toLowerCase() + name2.toLowerCase();
+    let score = 0;
+    for (let i = 0; i < combined.length; i++) {
+        score += combined.charCodeAt(i);
+    }
+    let lovePercent = score % 101;
+
+    // Cute messages
+    if (lovePercent > 80) {
+        result.innerHTML = 💖 ${lovePercent}% — Soulmates! Destiny is real!;
+    } else if (lovePercent > 50) {
+        result.innerHTML = 💘 ${lovePercent}% — Looking good! Keep growing together!;
+    } else {
+        result.innerHTML = 💔 ${lovePercent}% — Needs effort… but love is magic! ✨;
+    }
+}
+</script>
+
+</body>
+</html>
